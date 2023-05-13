@@ -1,0 +1,23 @@
+{
+    "Patient-Number.": "6",
+    "Patient-name": "Müler",
+    "Patient-info": "Älterer Herr der sehr akademisch und altmodisch spricht und der zeigt, dass er Zahnärzte nicht mag",
+    "Reason for coming": "du schlimme Zahnschmerzen und oft so einen ekligen Geschmack im Mund hast.",
+    "Symptoms": [
+        "Die Schmerzen sind im Oberkiefer links",
+        "Die Schmerzen bei einem der Backenzähne.",
+        "Der Schmerz ist pochend und dumpf",
+        "Du kannst nicht mehr auf der einen Seite zubeißen, da dies zu schmerzhaft ist"
+    ],
+    "Clinical picture": "(...)",
+    "Radiograph": "(...)",
+    "clinical tests": [
+        "Klopfen auf den Zahn 26 ist sehr schmerzhaft",
+        "Drücken auf den Bereich der Wurzelspitze von 26 ist sehr schmerzhaft",
+        "Kälte auf dem zahn spürst du gar nicht"
+    ],
+    "Diagnosis": "akute apikale Parodontitis",
+    "Therapy": [
+        "Wurzelkanalbehandlung in zwei Terminen mit medikamentöser Einlage"
+    ]
+}

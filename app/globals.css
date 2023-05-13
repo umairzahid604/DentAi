@@ -2,26 +2,366 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
+html,
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  scroll-behavior: smooth
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* popup */
+.imagePopup {
+  position: fixed;
+  background-color: #20202057;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.imagePopup button {
+  position: absolute;
+  font-size: 40px;
+  top: 0%;
+  right: 0%;
+  color: white;
+}
+
+.imagePopup .img {
+  max-width: 90%;
+  max-height: 90%;
+  overflow: hidden;
+  /* background-color: #272727; */
+}
+
+.box {
+  box-shadow: 0px 0px 6px #7a7a7a;
+  cursor: pointer;
+  font-size: large;
+  position: relative;
+  padding: 20px;
+}
+
+.box:hover {
+  background-color: aliceblue;
+}
+
+.box .num {
+  border-radius: 100%;
+  box-shadow: 0px 0px 6px #7a7a7a;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  top: -15%;
+  left: -7%;
+  font-weight: 700;
+
+}
+
+.box p {
+  font-weight: 700;
+}
+
+
+/* PRACTICE Page */
+.wrapper {
+  width: 100%;
+  /* height: 100vh; */
+  height: 700px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 100px; */
+}
+
+.wrapper .wait{
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  /* box-shadow: 0px 0px 3px black; */
+  width: 70%;
+}
+
+.wrapper .chatWrapper {
+  width: 70%;
+  height: 70%;
+
+  min-width: 350px;
+  /* background-color: #7a7a7a; */
+  background-color: #f8f8f8;
+  box-shadow: 0px 0px 3px #9e9e9e;
+
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 1200px;
+  margin-right: 60px;
+
+
+}
+
+.wrapper .chatWrapper .chat {
+  width: 100%;
+  height: 87%;
+  margin-bottom: 20px;
+  padding: 0% 5px;
+  /* background-color: #dadada; */
+
+  border-radius: 10px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+
+}
+
+.wrapper .chatWrapper .chat .messageWrapper {
+  /* background-color: #b35f5f; */
+  margin-top: 2px;
+
+}
+
+.wrapper .chatWrapper .chat .message {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  min-width: 100px;
+  text-align: left;
+  max-width: 75%;
+
+}
+
+.wrapper .chatWrapper .chat .user {
+  text-align: right;
+
+
+}
+
+.wrapper .chatWrapper .chat .user .message {
+  background-color: #36b400;
+  color: white;
+
+}
+
+.wrapper .chatWrapper .chat .ai .message {
+  background-color: #dfdfdf;
+}
+
+
+.wrapper .chatWrapper .chatActions {
+  /* background-color: #7a7a7a; */
+  width: 100%;
+  height: 50px;
+  position: relative;
+  bottom: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper .chatWrapper .chatActions button {
+  /* background-color: #7a7a7a; */
+  height: 40px;
+  width: 40px;
+  box-shadow: 0px 0px 5px #7c7c7c;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 20px;
+  color: #6b6b6b;
+
+}
+
+.wrapper .chatWrapper .chatActions button:hover {
+
+  color: #272727;
+
+}
+
+.wrapper .chatWrapper .chatActions .textBox {
+  border: 2px solid;
+  width: 70%;
+  height: 70%;
+  border: none;
+  /* outline: none; */
+  background-color: #ffffff;
+  box-shadow: 0px 0px 5px #7c7c7c;
+  padding-left: 5px;
+
+}
+
+
+
+
+.wrapper .sidebarActions {
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid red; */
+  height: 70%;
+}
+
+.wrapper .sidebarActions button,
+.wrapper .StopActions button {
+  background-color: blue;
+  padding: 12px;
+  border-radius: 10px;
+  color: white;
+  margin: 5px;
+
+}
+
+.wrapper .StopActions {
+  width: 70%;
+}
+
+.wrapper .sidebarActions .green {
+  background-color: #00a100;
+}
+
+.wrapper .sidebarActions .red {
+  background-color: #ff0000;
+}
+
+.d-none {
+  display: none;
+}
+
+
+@media only screen and (max-width: 900px) {
+  .wrapper {
+    flex-direction: column;
+    flex-wrap: unset;
+    align-items: unset;
+    padding: 10px;
+    margin-left: 0%;
+  }
+
+  .wrapper .wait{
+  width: 100%;
+  }
+
+  .wrapper .chatWrapper {
+    width: 100% !important;
+    margin-right: 0px;
+    min-height: 500px;
+  }
+
+
+
+  .wrapper .sidebarActions {
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    width: 100%;
+    /* flex-direction: column; */
+    height: auto;
+    margin-top: 20px;
+  }
+
+
+  .wrapper .sidebarActions button {
+    width: auto;
+    display: inline-block;
+    height: auto;
+    flex-grow: 1;
+  }
+
+}
+
+
+
+
+
+/* ADMIN PAGE */
+
+.patientformWrapper{
+  /* height: 100vh; */
+  width: 99vw;
+  min-width: 375px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  /* align-items: center; */
+}
+
+.form{
+  width: 70%;
+  min-width: 360px;
+  height: auto;
+  box-shadow: 0px 0px 5px 1px #616161;
+  border-radius: 5px;
+  padding: 2%;
+  display: flex;
+ flex-direction: column;
+ /* justify-content: center; */
+ align-items: center;
+}
+
+.form h2{
+  font-size: 40px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.form span{
+  text-align: left;
+  width: 70%;
+  min-width: 350px;
+
+  /* font-size: 40px; */
+  font-weight: bolder;
+  /* text-align: center; */
+  margin-top: 10px;
+
+}
+
+.form .input{
+  border: 1px solid #272727;
+  width: 70%;
+  min-width: 350px;
+  padding: 5px;
+  border-radius: 5px;
 }
