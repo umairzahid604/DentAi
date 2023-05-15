@@ -83,7 +83,7 @@ ARG PASSWORD
 ENV PASSWORD=${PASSWORD}
 
 # Uncomment the following line to disable telemetry at run time
-# ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED 1
 
 # Note: Don't expose ports here, Compose will handle that for us
 
