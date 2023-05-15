@@ -1,4 +1,5 @@
-import Patient from "@/db/models/patient"
+import Patient from "../../db/models/patient"
+
 
 export default async function handler(req, res) {
 
