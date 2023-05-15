@@ -13,6 +13,8 @@ services:
         PASSWORD: ${PASSWORD}
         
     restart: always
+    ports:
+      - 3000:3000
     networks:
       - my_network
 
