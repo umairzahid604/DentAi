@@ -85,6 +85,8 @@ ENV PASSWORD=${PASSWORD}
 # Uncomment the following line to disable telemetry at run time
 ENV NEXT_TELEMETRY_DISABLED 1
 
+Expose 3000
+
 # Note: Don't expose ports here, Compose will handle that for us
 
 CMD ["npm", "start"]
