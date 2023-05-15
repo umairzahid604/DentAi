@@ -16,7 +16,7 @@ RUN \
   else echo "Warning: Lockfile not found. It is recommended to commit lockfiles to version control." && yarn install; \
   fi
 
-COPY compnents ./components
+COPY components ./components
 COPY db ./db
 COPY pages ./pages
 COPY public ./public
