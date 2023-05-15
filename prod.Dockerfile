@@ -87,4 +87,4 @@ ENV PASSWORD=${PASSWORD}
 
 # Note: Don't expose ports here, Compose will handle that for us
 
-CMD ["node", "server.js"]
+CMD ["npm", "start"]
