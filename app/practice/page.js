@@ -33,7 +33,6 @@ export default function Home() {
     useEffect(() => {
         fetch("/api/patient").then(data => data.json()).then((patient) => {
             setPatient(patient)
-            console.log(patient)
         })
     }, [])
 
@@ -77,7 +76,6 @@ export default function Home() {
         setEvaluation({})
         fetch("/api/patient").then(data => data.json()).then((patient) => {
             setPatient(patient)
-            console.log(patient)
             setNextPatient(false)
         })
 
@@ -203,7 +201,7 @@ export default function Home() {
                                 {Conversation.map((message, i) => {
                                     return (
                                         <div key={i} className={`messageWrapper ${message.sender}`}>
-                                            <div className="message">{message.text}</div>
+                                            <div className="message ">{message.text}</div>
                                         </div>
                                     )
                                 })}
@@ -222,7 +220,7 @@ export default function Home() {
                                     </div>
                                 }
                                 {Object.keys(Evaluation) != 0 &&
-                                    <div className={`message ${Evaluation.sender} bg-green-800 text-gray-100`}>
+                                    <div className={`message ${Evaluation.sender} bg-green-800 text-gray-100 whitespace-pre-line`}>
                                         <b>Ai Supervisor</b>: {Evaluation.text}
                                     </div>
                                 }

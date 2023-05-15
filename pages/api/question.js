@@ -23,14 +23,14 @@ export default async function handler(req, res) {
             presence_penalty: 0,
         });
 
-        console.log(completion.data.choices[0].text)
+        // console.log(completion.data.choices[0].text)
         // res.status(200).json({ result: completion.data.choices[0].text });
 
         res.status(200).json({ sender: "ai", text: completion.data.choices[0].text, status: 200 })
         // res.status(200).json({ sender: "ai", text: "hello", status: 200 })
 
     } catch (error) {
-        res.status(500).json({ sender: "ai", text: "Ooops! an error occured. please message again !", status: 500 })
+        res.status(500).json({ sender: "error", text: "Ooops! an error occured. please message again !", status: 500 })
     }
     // res.status(200).json({sender:"ai",text:"from api",status:200})
 
