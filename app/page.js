@@ -10,7 +10,7 @@ export default function Home() {
     <main className="">
       <Navbar />
 
-      <section className="bg-center bg-no-repeat bg-gray-700 bg-blend-multiply" style={{ backgroundImage: "url(./HeroImg.jpg)" }}>
+      <section className="bg-center bg-no-repeat bg-gray-700 bg-blend-multiply" style={{ backgroundImage: "url(https://www.dropbox.com/s/1r09j0n1jctrxra/HeroImg.jpg?raw=1)" }}>
         <div className="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">DENT.AI studdy buddy </h1>
           <p className="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">The first AI dental patient simulator you can have a chat with <br /> Master your endodontic diagnostic skills and bring your Patient communication to the next level!</p>

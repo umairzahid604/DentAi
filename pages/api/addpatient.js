@@ -15,6 +15,9 @@ export default async function handler(req, res) {
         symptoms = symptoms.split(",")
         clinicalTests = clinicalTests.split(",")
         therapy = therapy.split(",")
+        radiograph = radiograph.replace("dl=0","raw=1")
+        clinicalPicture = clinicalPicture.replace("dl=0","raw=1")
+
 
         let patient = new Patient({
             patientNumber,
