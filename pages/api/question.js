@@ -23,7 +23,7 @@ export default async function handler(req, res) {
             presence_penalty: 0,
         });
 
-        // console.log(completion.data.choices[0].text)
+        console.log(completion.data.choices[0].text)
         // res.status(200).json({ result: completion.data.choices[0].text });
 
         res.status(200).json({ sender: "ai", text: completion.data.choices[0].text, status: 200 })
@@ -54,9 +54,10 @@ function GetAnswer(question, patient) {
     ${patient.clinicalTests.map((test)=> test + ",")}
 
 
-    Antworte mir in nur einem Satz!
+    Gib mir eine schnelle Antwort!
     ----------------
     ${question.text}
+    
     `
 
 }
