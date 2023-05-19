@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
         const completion = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: GetAnswer(conversation, patient),
+            prompt: Prompt(conversation, patient),
             temperature: 0.7,
             max_tokens: 300,
             top_p: 1,
@@ -37,20 +37,20 @@ export default async function handler(req, res) {
 }
 
 
-function GetAnswer(conversation, patient) {
+function Prompt(conversation, patient) {
 
 
     return `
     Bitte bewerte das folgende simulierte Gespräch zwischen Zahnmedizinstudent und Patient zu Trainingszwecken und fokussiere dich auf folgende Punkte:
+
+    Gespräch:
+    ${conversation.filter((message)=> message.sender != "error").map((message)=> `${message.sender === "user" ? "doctor":"patient"}: ${message.text} \n`)}
 
     1. Ist die Diagnose ${patient.diagnosis} richtig gestellt worden?
     2. Ist die richtige Therapie ${patient.therapy} vorgeschlagen worden?
     3. War die Kommunikation des Arztes einfühlsam und angemessen?
     
     Berücksichtigen Sie keine Konversation als Antwort !
-    ---------------
-    Gespräch:
-    ${conversation.filter((message)=> message.sender != "error").map((message)=> `${message.sender === "user" ? "doctor":"patient"}: ${message.text} \n`)}
     `
 
 }

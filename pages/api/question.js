@@ -15,13 +15,14 @@ export default async function handler(req, res) {
 
         const completion = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: GetAnswer(question, patient),
+            prompt: Prompt(question, patient),
             temperature: 0.7,
-            max_tokens: 500,
+            max_tokens: 256,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
         });
+
 
         console.log(completion.data.choices[0].text)
         // res.status(200).json({ result: completion.data.choices[0].text });
@@ -30,6 +31,7 @@ export default async function handler(req, res) {
         // res.status(200).json({ sender: "ai", text: "hello", status: 200 })
 
     } catch (error) {
+        console.log(error)
         res.status(500).json({ sender: "error", text: "Ooops! an error occured. please message again !", status: 500 })
     }
     // res.status(200).json({sender:"ai",text:"from api",status:200})
@@ -37,7 +39,7 @@ export default async function handler(req, res) {
 }
 
 
-function GetAnswer(question, patient) {
+function Prompt(question,patient) {
 
 
     return `
@@ -46,18 +48,16 @@ function GetAnswer(question, patient) {
     Ich bin der Zahnarzt und du bist zu mir gekommen, weil ${patient.reasonForComing}
     Deshalb bittest du um meine Hilfe.
 
-    ${patient.symptoms.map((symtom)=> symtom + ",")}
+    ${patient.symptoms.map((symtom) => symtom + ",")}
 
     Ich versuche herauszufinden, woran du leidest und und wie ich dir helfen kann.
 
     Falls ich klinische Tests durchführe, reagierst du so darauf:
-    ${patient.clinicalTests.map((test)=> test + ",")}
+    ${patient.clinicalTests.map((test) => test + ",")}
 
-
+    ${question.text} 
     Gib mir eine schnelle Antwort!
-    ----------------
-    ${question.text}
-    
     `
 
 }
+
