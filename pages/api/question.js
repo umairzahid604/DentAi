@@ -13,21 +13,48 @@ export default async function handler(req, res) {
     console.log(question, patient)
     try {
 
-        const completion = await openai.createCompletion({
-            model: "text-davinci-003",
-            prompt: Prompt(question, patient),
-            temperature: 0.7,
-            max_tokens: 250,
-            top_p: 1,
-            frequency_penalty: 0,
-            presence_penalty: 0,
-        });
+        // const completion = await openai.createCompletion({
+        //     model: "text-davinci-003",
+        //     prompt: Prompt(question, patient),
+        //     temperature: 0.7,
+        //     max_tokens: 250,
+        //     top_p: 1,
+        //     frequency_penalty: 0,
+        //     presence_penalty: 0,
+        // });
+
+        const completion = await openai.createChatCompletion({
+            model : "gpt-3.5-turbo-0301",
+            messages : [{ "role": "system", "content": `
+            You are pretending as patient. 
+            Your name is ${patient.patientName}.
+            you are ${patient.patientInfo}, 
+            reason for coming to dentist: ${patient.reasonForComing}, 
+            your symptoms are : ${patient.symptoms.map((symtom) => symtom + ",")},
+            your clinical tests are : ${patient.clinicalTests.map((test) => test + ",")}
+            `},
+            
+            { "role": "user", "content": "Hello, It is so nice to meet you! I will definitely take a look at it" },
+            { "role": "assistant", "content": `Hi, nice to meet you too!, yes please its very painful` },
+            { "role": "user", "content": "what is your name ?" },
+            { "role": "assistant", "content": `My name is ${patient.patientName}`},
+            { "role": "user", "content": "how are you feeling today ? don't say `as a language model` !" },
+            { "role": "assistant", "content": `I'm feeling bad due to my ${patient.reasonForComing}` },
 
 
-        console.log(completion.data.choices[0].text)
+            // { "role": "assistant", "content": `sure ! my name is ${patient.patientName}`},
+
+            { "role": "user", "content": question.text },
+
+
+
+
+        ]
+    })
+        console.log(completion.data.choices[0].message.content)
         // res.status(200).json({ result: completion.data.choices[0].text });
 
-        res.status(200).json({ sender: "ai", text: completion.data.choices[0].text, status: 200 })
+        res.status(200).json({ sender: "ai", text: completion.data.choices[0].message.content, status: 200 })
         // res.status(200).json({ sender: "ai", text: "hello", status: 200 })
 
     } catch (error) {
@@ -39,20 +66,22 @@ export default async function handler(req, res) {
 }
 
 
-function Prompt(question,patient) {
+function Prompt(question, patient) {
 
 
     return `
-    Du bist ein/e ${patient.patientInfo}. Dein Name ist  ${patient.patientName}.
+    you have to pretend like patient !
+    Dein Name ist  ${patient.patientName} 
+    Du bist ein/e ${patient.patientInfo} !
 
-    Ich bin der Zahnarzt und du bist zu mir gekommen, weil ${patient.reasonForComing}
-    Deshalb bittest du um meine Hilfe.
+    Du bist der Patient und du bist zu mir gekommen, weil ${patient.reasonForComing} 
+    Deshalb bitten Sie mich um Hilfe!
 
     ${patient.symptoms.map((symtom) => symtom + ",")}
+    
+    Versuchen Sie beim Zahnarzt herauszufinden, woran Sie leiden und wie er Ihnen helfen kann
 
-    Ich versuche herauszufinden, woran du leidest und und wie ich dir helfen kann.
-
-    Falls ich klinische Tests durchführe, reagierst du so darauf:
+    Wenn der Zahnarzt klinische Tests durchführt, reagieren Sie folgendermaßen:
     ${patient.clinicalTests.map((test) => test + ",")}
 
     ${question.text} 
